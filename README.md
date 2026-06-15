@@ -1,39 +1,226 @@
-#Vendor Sales Performance Analytics
+Vendor Sales Performance Analytics
 
-An end-to-end data analytics project focused on analyzing vendor sales, procurement, inventory, and profitability data for a beverage retail business. This project processes over 2.6 million transaction records and combines Python, PostgreSQL, SQL, statistical analysis, and Power BI to generate actionable business insights.
+An end-to-end data analytics project on 2.6+ million retail transactions covering data engineering, SQL modeling, exploratory data analysis, statistical testing, and interactive business intelligence reporting using Python, PostgreSQL, and Power BI.
 
-Key Objectives
-Analyze vendor sales and procurement performance
-Identify high-margin, low-performing products
-Measure vendor concentration and procurement risks
-Evaluate bulk purchasing impact on unit costs
-Detect unsold inventory and stock-related risks
-Perform statistical analysis and hypothesis testing on vendor profitability
+Project Overview
+
+This project analyzes vendor purchases, sales, inventory, and freight data to uncover insights into:
+
+Vendor performance and procurement concentration
+Product profitability and margin optimization
+Inventory turnover and unsold stock risks
+Bulk purchasing impact on unit costs
+Statistical differences between high- and low-performing vendors
+Promotional opportunities for high-margin products
+Dataset
+Attribute	Details
+Total Records	2.6+ Million
+Source Files	5 Raw CSV Files
+Vendors	119
+Derived Dataset	vendor_sales_summary
+Engineered KPIs	GrossProfit, ProfitMargin, StockTurnOver, SalesToPurchaseRatio
+Source Tables
+Table	Rows
+purchases.csv	2,372,474
+purchase_prices.csv	12,261
+vendor_invoice.csv	5,543
+end_inventory.csv	224,489
+begin_inventory.csv	224K+
+vendor_sales_summary	Derived
 Tech Stack
-Python (Pandas, NumPy, Matplotlib, Seaborn, SciPy)
-PostgreSQL
-SQL (CTEs, Window Functions)
-Power BI
-Jupyter Notebook
-Project Highlights
-Processed and analyzed 2.6M+ records from multiple retail datasets.
-Built an automated data pipeline from raw CSV files to PostgreSQL.
-Created vendor performance KPIs including:
+Tool	Purpose
+Python (Pandas, NumPy)	Data Cleaning & Feature Engineering
+PostgreSQL	Data Storage & SQL Analysis
+SQL (CTEs, Window Functions)	Data Modeling
+Matplotlib & Seaborn	Data Visualization
+SciPy	Statistical Analysis
+SQLAlchemy / psycopg2	Python → PostgreSQL Integration
+Power BI	Interactive Dashboard
+Jupyter Notebook	EDA & Analysis
+Repository Structure
+
+vendor-sales-performance-analytics/
+
+├── notebooks/
+
+│ ├── exploratory_data_analysis.ipynb
+
+│ └── vendor_analysis.ipynb
+
+├── scripts/
+
+│ ├── ingestion_db.py
+
+│ └── get_vendor_summary.py
+
+├── sql/
+
+│ └── vendor_summary_queries.sql
+
+├── dashboard/
+
+│ └── vendor_sales_dashboard.pbix
+
+├── reports/
+
+│ └── Vendor_Sales_Analytics_Report.pdf
+
+└── README.md
+
+Data Engineering Pipeline
+ETL Workflow
+
+Raw CSV Files
+
+↓
+
+PostgreSQL Data Ingestion
+
+↓
+
+SQL CTE-Based Vendor Aggregation
+
+↓
+
+Feature Engineering
+
+↓
+
+Exploratory Data Analysis
+
+↓
+
+Statistical Analysis
+
+↓
+
+Power BI Dashboard
+
+Engineered KPIs
 Gross Profit
-Profit Margin
+Profit Margin %
 Stock Turnover
 Sales-to-Purchase Ratio
-Identified 198 high-margin products requiring promotional focus.
-Discovered 65.69% of procurement spend concentrated among the top 10 vendors.
-Quantified $2.71M in unsold inventory value.
-Conducted confidence interval analysis and Welch's t-test to validate profitability differences between vendor segments.
-Designed an interactive Power BI dashboard for business decision-making.
-Resume Project Description
+Exploratory Data Analysis
+Data Quality Checks
+Missing value treatment
+Outlier detection using box plots
+Distribution analysis using histograms & KDE plots
+Correlation analysis using Pearson correlation matrix
+Key Findings
+Purchase and sales quantities show a correlation of 0.999
+Purchase price has minimal impact on revenue generation
+Faster inventory turnover does not necessarily increase profitability
+Freight costs vary significantly across vendors
+Business Analysis
+Vendor Concentration Analysis
+Metric	Result
+Total Vendors	119
+Top 10 Vendor Contribution	65.69%
+Largest Vendor Share	16.30%
 
-Vendor Sales Performance Analytics | Python, PostgreSQL, SQL, Power BI
+Insight: Procurement spending is heavily concentrated among a small group of vendors, creating supply-chain dependency risk.
 
-Developed an end-to-end analytics solution processing 2.6M+ retail transactions across sales, purchases, inventory, and vendor data.
-Built a PostgreSQL-based data pipeline and engineered business KPIs including Gross Profit, Profit Margin, Stock Turnover, and Sales-to-Purchase Ratio.
-Performed exploratory data analysis, correlation analysis, Pareto analysis, inventory risk assessment, and statistical hypothesis testing.
-Identified 65.69% procurement concentration among top 10 vendors, $2.71M unsold inventory exposure, and 198 high-margin products for promotional opportunities.
-Designed an interactive Power BI dashboard enabling data-driven vendor and inventory management decisions.
+High-Margin Product Opportunities
+
+Criteria:
+
+Bottom 15% in Sales
+Top 15% in Profit Margin
+
+Results:
+
+198 products identified
+Profit margins ranging from 65% to 90%
+
+Insight: These products offer significant growth opportunities through targeted promotions and better shelf placement.
+
+Bulk Purchasing Impact
+Order Size	Avg Unit Cost
+Small	$39.07
+Medium	$15.49
+Large	$10.78
+
+Finding: Large-volume purchases reduce unit costs by approximately 72%.
+
+Unsold Inventory Analysis
+Metric	Value
+Total Unsold Inventory	$2.71M
+Highest Vendor Exposure	DIAGEO NORTH AMERICA
+Unsold Inventory Value	$722K
+
+Insight: Inventory risk is concentrated among a few major vendors and requires proactive stock management.
+
+Statistical Analysis
+Confidence Intervals
+
+Comparison of Profit Margins:
+
+Segment	Mean Margin
+Top Performing Vendors	~31.2%
+Low Performing Vendors	~41.6%
+Welch's T-Test
+Metric	Value
+T-Statistic	-17.67
+P-Value	< 0.001
+
+Conclusion: The difference in profit margins between high- and low-performing vendors is statistically significant.
+
+Power BI Dashboard
+Dashboard Features
+Vendor Performance Overview
+Revenue & Profitability Analysis
+Procurement Concentration Monitoring
+Inventory Risk Tracking
+Product Performance Insights
+KPIs
+Total Purchase Dollars
+Total Sales Dollars
+Gross Profit
+Profit Margin
+Inventory Turnover
+Vendor Contribution %
+Key Insights
+Top 10 vendors account for 65.69% of total procurement spend.
+198 products generate high margins despite low sales volumes.
+Large purchase orders reduce unit costs by 72%.
+$2.71M worth of inventory remains unsold.
+Low-performing vendors achieve significantly higher profit margins than top-selling vendors.
+Business Recommendations
+Priority	Recommendation
+🔴 High	Reduce procurement concentration by diversifying vendor base
+🔴 High	Promote high-margin, low-sales products
+🔴 High	Address $2.71M unsold inventory through clearance strategies
+🟡 Medium	Encourage bulk purchasing to improve cost efficiency
+🟡 Medium	Reassess pricing strategies for top-performing vendors
+🟢 Low	Implement vendor-specific inventory forecasting
+How to Run
+Clone Repository
+git clone https://github.com/<your-username>/vendor-sales-performance-analytics.git
+
+cd vendor-sales-performance-analytics
+Install Dependencies
+pip install pandas numpy sqlalchemy psycopg2-binary matplotlib seaborn scipy
+Run ETL Pipeline
+python scripts/get_vendor_summary.py
+Run Analysis Notebooks
+jupyter notebook
+Open Dashboard
+
+Open:
+
+dashboard/vendor_sales_dashboard.pbix
+
+in Power BI Desktop and refresh the data source.
+
+Project Outcomes
+
+This project demonstrates practical skills across:
+
+Data Engineering
+SQL Data Modeling
+Exploratory Data Analysis
+Statistical Testing
+Business Intelligence
+Data Visualization
+Business Problem Solving
